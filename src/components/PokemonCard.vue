@@ -1,63 +1,51 @@
 <script setup>
-    import { ref, watch } from 'vue';
-    import LoadingPokemon from './LoadingPokemon.vue';
+    import { ref } from 'vue';
+    const props = defineProps(['pokemonName']);
+    const nameToUrl = (pokemonName) => `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+    const pokemon = ref(null);
+    const species = ref(null);
 
-    const props = defineProps(["pokemonName"]);
-
-    const response = ref({});
-    const searching = ref(false);
-    const errorOccurred = ref(false);
-    const invalidPokemon = ref(false);
-    const pokemonImgLoaded = ref(false);
-
-    const imageLoadComplete = () => pokemonImgLoaded.value = true;
-
-    watch(()=>props.pokemonName, async ()=>{
-        searching.value = true;
-        pokemonImgLoaded.value = false;
-        response.value = await getPokemon(props.pokemonName);
-        searching.value = false;
-    });
-
-    async function getPokemon(pokemon){
-        let res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
-        invalidPokemon.value = res.status === 404;
-        errorOccurred.value = !res.ok;
+    async function getPokemon(pokemonUrl){
+        console.log(pokemonUrl);
+        let res = await fetch(pokemonUrl);
         if (res.ok) return await res.json();
-        return {};
+        throw new Error(`invalid Pokemon ${pokemonUrl}`);
     }
 
-    response.value = await getPokemon(props.pokemonName);
-
+    pokemon.value = await getPokemon(nameToUrl(props.pokemonName));
+    species.value = await fetch(pokemon.value.species.url).then((res)=>res.json());
+    let defaultImage = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg';
 </script>
-
 <template>
-    <div v-if="invalidPokemon">
-        Invalid Pokémon 🧐
-    </div>
-    <div v-else-if="errorOccurred">
-        Some error occured
-    </div>
-    <div v-else>
-        <div v-show="pokemonImgLoaded">
-            <img :src="response.sprites.other['official-artwork'].front_default" @load="imageLoadComplete"><br/>
-        </div>
-        <div v-show="!pokemonImgLoaded">
-            <LoadingPokemon height="475px"/>
-        </div>
-        Name: {{response.name}}<br/>
-        Height: {{response.height}}dm<br/>
-        Weight: {{response.weight}}hg<br/>
-        Type: {{response.types[0].type.name}}<br/>
-        Moves list:
-        <ul>
-            <li v-for="ability in response.abilities">{{ability.ability.name}}</li>
-        </ul>
+    <div class="card-container" :class="species.color.name">
+        <img :src="pokemon.sprites.other.dream_world.front_default || defaultImage">
+        <div class="pokemon-name">{{pokemon?.name}}</div>
     </div>
 </template>
 
 <style scoped>
-    ul {
-        margin: 0;
+
+    .card-container {
+        border-radius: 5px;
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+        align-items: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
+
+    img {
+        width: 135px;
+        height: 169px;
+    }
+
+    .pokemon-name {
+        font-weight: bold;
+        text-transform: capitalize;
+        font-size: large;
+    }
+    
 </style>
