@@ -6,7 +6,6 @@
     const species = ref(null);
 
     async function getPokemon(pokemonUrl){
-        console.log(pokemonUrl);
         let res = await fetch(pokemonUrl);
         if (res.ok) return await res.json();
         throw new Error(`invalid Pokemon ${pokemonUrl}`);
