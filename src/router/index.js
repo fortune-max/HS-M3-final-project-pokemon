@@ -6,7 +6,7 @@ const NotFound = () => import('@/views/NotFound.vue');
 const GroupLister = () => import('@/views/GroupLister.vue');
 const PokemonMiniCardList = () => import('@/views/PokemonMiniCardList.vue');
 const PokemonMiniCard = () => import('@/components/PokemonMiniCard.vue');
-//const PokemonCard = () => import('@/components/PokemonCard.vue');
+const PokemonCard = () => import('@/components/PokemonCard.vue');
 //const PokemonLegacyLookup = () => import('@/views/PokemonLegacyLookup.vue');
 //const PokemonDetail = () => import('@/views/PokemonDetail.vue');
 
@@ -35,6 +35,12 @@ const routes = [
     path: '/mini-card/:pokemonName',
     name: 'pokemon-mini-card',
     component: PokemonMiniCard,
+    props: true,
+  },
+  {
+    path: '/card/:pokemonName',
+    name: 'pokemon-card',
+    component: PokemonCard,
     props: true,
   },
   /*
