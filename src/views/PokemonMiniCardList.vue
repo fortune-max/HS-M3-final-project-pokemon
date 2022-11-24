@@ -8,7 +8,14 @@
 <template>
     <h2>{{subCategory}} Pokemon</h2>
     <div class="mini-card-container">
-        <PokemonMiniCard v-for="pokemonName in pokemonNames" :pokemonName="pokemonName"/>
+        <div v-for="pokemonName in pokemonNames">
+            <Suspense>
+                <PokemonMiniCard :pokemonName="pokemonName"/>
+                <template #fallback>
+                    Loading Pokemon Mini Card...
+                </template>
+            </Suspense>
+        </div>
     </div>
 </template>
 
