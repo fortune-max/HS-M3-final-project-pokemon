@@ -3,38 +3,97 @@
     color: white;
 }
 
+.black:hover {
+    color: black;
+    background-color: white;
+}
+
 .blue {
     background-color: blue;
+    color: #FFFF00;
+}
+
+.blue:hover {
+    color: blue;
+    background-color: #FFFF00;
 }
 
 .brown {
     background-color: brown;
+    color: #5AD5D5;
+}
+
+.brown:hover {
+    color: brown;
+    background-color: #5AD5D5;
 }
 
 .gray {
     background-color: gray;
+    color: white;
+}
+
+.gray:hover {
+    color: gray;
+    background-color: white;
 }
 
 .green {
     background-color: green;
+    color: #FF7FFF;
+}
+
+.green:hover {
+    color: green;
+    background-color: #FF7FFF;
 }
 
 .pink {
     background-color: pink;
+    color: #003f34;
+}
+
+.pink:hover {
+    color: pink;
+    background-color: #003f34;
 }
 
 .purple {
     background-color: purple;
+    color: #7FFF7F;
+}
+
+.purple:hover {
+    color: purple;
+    background-color: #7FFF7F;
 }
 
 .red {
     background-color: red;
+    color: #00ffff;
+}
+
+.red:hover {
+    color: red;
+    background-color: #00ffff;
 }
 
 .white {
     background-color: white;
+    color: black;
+}
+
+.white:hover {
+    color: white;
+    background-color: black;
 }
 
 .yellow {
     background-color: yellow;
+    color: #0000ff;
+}
+
+.yellow:hover {
+    color: yellow;
+    background-color: #0000ff;
 }
