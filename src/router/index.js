@@ -6,9 +6,8 @@ const NotFound = () => import('@/views/NotFound.vue');
 const GroupLister = () => import('@/views/GroupLister.vue');
 const PokemonMiniCardList = () => import('@/views/PokemonMiniCardList.vue');
 const PokemonMiniCard = () => import('@/components/PokemonMiniCard.vue');
-const PokemonCard = () => import('@/components/PokemonCard.vue');
-//const PokemonLegacyLookup = () => import('@/views/PokemonLegacyLookup.vue');
-//const PokemonDetail = () => import('@/views/PokemonDetail.vue');
+const PokemonCard = () => import('@/views/PokemonCard.vue');
+const PokemonCardSingle = () => import('@/views/PokemonCardSingle.vue');
 
 const routes = [
   {
@@ -38,27 +37,19 @@ const routes = [
     props: true,
   },
   {
-    path: '/card/:pokemonName',
-    name: 'pokemon-card',
-    component: PokemonCard,
-    props: true,
-  },
-  /*
-  {
-    path: '/legacy-lookup',
-    name: 'legacy-lookup',
-    component: PokemonLegacyLookup,
-  },
-  {
-    path: '/pokemon/:pokemon-name',
-    name: 'pokemon-card',
-    component: PokemonCard,
+    path: '/card/',
+    name: 'pokemon-card-single',
+    component: PokemonCardSingle,
     props: true,
     children: [
-        {path: 'detail', name: 'pokemon-detail', component: PokemonDetail },
-    ],
+      {
+        path: '/card/:pokemonName',
+        name: 'pokemon-card',
+        component: PokemonCard,
+        props: true,
+      }
+    ]
   },
-  */
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
