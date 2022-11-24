@@ -29,8 +29,7 @@
     }
 
     main {
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding: 20px;
         background-color: blueviolet;
         height: inherit;
         flex-grow: 1;
