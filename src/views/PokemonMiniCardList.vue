@@ -1,6 +1,7 @@
 <script setup>
     import { ref } from 'vue';
     import PokemonMiniCard from '@/components/PokemonMiniCard.vue';
+    import LoadingCard from '../components/LoadingCard.vue';
     const props = defineProps(["mainCategory", "subCategory"]);
     const pokemonNames = ref(window.history.state.pokemonNames);
 </script>
@@ -12,7 +13,7 @@
             <Suspense>
                 <PokemonMiniCard :pokemonName="pokemonName"/>
                 <template #fallback>
-                    Loading Pokemon Mini Card...
+                    <LoadingCard width="110px" height="120.5px"/>
                 </template>
             </Suspense>
         </div>
