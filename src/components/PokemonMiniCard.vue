@@ -1,6 +1,9 @@
 <script setup>
+    import { ref } from 'vue';
     const props = defineProps(['pokemonName']);
     const nameToUrl = (pokemonName) => `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+    const pokemon = ref(null);
+    const species = ref(null);
 
     async function getPokemon(pokemonUrl){
         let res = await fetch(pokemonUrl);
@@ -8,8 +11,8 @@
         throw new Error(`invalid Pokemon ${pokemonUrl}`);
     }
 
-    let pokemon = await getPokemon(nameToUrl(props.pokemonName));
-    let species = await fetch(pokemon.species.url).then((res)=>res.json());
+    pokemon.value = await getPokemon(nameToUrl(props.pokemonName));
+    species.value = await fetch(pokemon.value.species.url).then((res)=>res.json());
 </script>
 
 <template>
