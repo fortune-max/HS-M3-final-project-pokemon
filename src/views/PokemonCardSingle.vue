@@ -22,12 +22,14 @@
             <input placeholder="Enter Pokémon name" v-model="textbox" @change="searchPokemon"/>
             <button @click="searchPokemon">Search</button>
         </div>
-        <Suspense>
-            <router-view/>
-            <template #fallback>
-                <LoadingCard width="250px" height="400px"/>
-            </template>
-        </Suspense>
+        <router-view v-slot="{ Component }">
+            <Suspense timeout="0">
+                <component :is="Component" />
+                <template #fallback>
+                    <LoadingCard width="250px" height="400px"/>
+                </template>
+            </Suspense>
+        </router-view>
     </div>
 </template>
 
