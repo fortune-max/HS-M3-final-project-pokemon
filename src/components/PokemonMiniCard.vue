@@ -13,11 +13,12 @@
 
     pokemon.value = await getPokemon(nameToUrl(props.pokemonName));
     species.value = await fetch(pokemon.value.species.url).then((res)=>res.json());
+    let defaultImage = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png';
 </script>
 
 <template>
-    <div class="card-container" :class="species?.color?.name">
-        <img :src="pokemon?.sprites?.front_default">
+    <div class="card-container" :class="species.color.name">
+        <img :src="pokemon.sprites.front_default || defaultImage">
         <div class="pokemon-name">{{pokemon?.name}}</div>
     </div>
 </template>
