@@ -1,14 +1,14 @@
 <script setup>
-    const props = defineProps(['pokemon', 'pokemonName']);
+    const props = defineProps(['pokemonName']);
     const nameToUrl = (pokemonName) => `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
 
     async function getPokemon(pokemonUrl){
         let res = await fetch(pokemonUrl);
         if (res.ok) return await res.json();
-        return {};
+        throw new Error(`invalid Pokemon ${pokemonUrl}`);
     }
 
-    let pokemon = await getPokemon(props.pokemon?.url || nameToUrl(props.pokemonName));
+    let pokemon = await getPokemon(nameToUrl(props.pokemonName));
     let species = await fetch(pokemon.species.url).then((res)=>res.json());
 </script>
 
@@ -25,12 +25,11 @@
         border: 2px solid black;
         display: flex;
         flex-direction: column;
-        width: fit-content;
+        width: 110px;
         align-items: center;
-    }
-
-    .card-container:hover{
-        background-color: aqua;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
     img {
@@ -41,6 +40,7 @@
     .pokemon-name {
         font-weight: bold;
         text-transform: capitalize;
+        font-size: large;
     }
 
 </style>
