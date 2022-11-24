@@ -4,7 +4,6 @@
     const props = defineProps(["mainCategory"]);
     const mainCategory = toRef(props, "mainCategory");
     const list = ref([]);
-    const triggerSuspense = ref(0);
 
     async function getList(category){
         const res = await fetch(`https://pokeapi.co/api/v2/${category}`);
@@ -14,7 +13,6 @@
     }
 
     watch(mainCategory, async () => {
-        triggerSuspense.value++;
         list.value = await getList(mainCategory.value);
     });
 
@@ -22,16 +20,11 @@
 </script>
 
 <template>
-    <Suspense :key="triggerSuspense">
-        <div class="links-container">
-            <div v-for="item in list">
-                <ListItem :main-category="mainCategory" :url="item.url" :sub-category="item.name" />
-            </div>
+    <div class="links-container">
+        <div v-for="item in list">
+            <ListItem :main-category="mainCategory" :url="item.url" :sub-category="item.name" />
         </div>
-        <template #fallback>
-            Loading {{mainCategory}} categories...
-        </template>
-    </Suspense>
+    </div>
 </template>
 
 <style scoped>
