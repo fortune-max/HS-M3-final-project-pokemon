@@ -25,7 +25,7 @@
     <Suspense :key="triggerSuspense">
         <div class="links-container">
             <div v-for="item in list">
-                <ListItem :url="item.url" :name="item.name" />
+                <ListItem :main-category="mainCategory" :url="item.url" :sub-category="item.name" />
             </div>
         </div>
         <template #fallback>
@@ -44,7 +44,7 @@
     margin: 20px;
     border-radius: 10px;
     border: 2px solid black;
-    background-color: bisque;
+    background-color: aqua;
     color: bisque;
     height: 420px;
 }
