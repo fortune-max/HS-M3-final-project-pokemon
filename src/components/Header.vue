@@ -1,6 +1,6 @@
 <template>
     <div class="header-wrapper">
-        <img src="../assets/pokemon_logo.png"/>
+        <router-link to="/"><img src="../assets/pokemon_logo.png"/></router-link>
         <nav>
             <router-link to="/group/type">Type</router-link>
             <router-link to="/group/pokemon-color">Color</router-link>
