@@ -14,13 +14,13 @@
 
     pokemon.value = await getPokemon(nameToUrl(props.pokemonName));
     species.value = await fetch(pokemon.value.species.url).then((res)=>res.json());
-    let defaultImage = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg';
+    let defaultImage = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png';
 </script>
 <template>
     <div class="card-text-wrapper">
         <div class="card-container" :class="species.color.name">
             <div class="pokemon-name">{{pokemon.name}}</div>
-            <img :src="pokemon.sprites.other.dream_world.front_default || defaultImage">
+            <img :src="pokemon.sprites.other['official-artwork'].front_default || defaultImage">
             <div>Height: {{pokemon.height / 10}}m</div>
             <div>Weight: {{pokemon.weight / 10}}kg</div>
             <div>Type:
