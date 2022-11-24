@@ -1,9 +1,10 @@
 <script setup>
-    import { ref } from 'vue';
+    import { ref, toRef, watch } from 'vue';
     const props = defineProps(['pokemonName', 'hideDescription']);
     const nameToUrl = (pokemonName) => `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
     const pokemon = ref(null);
     const species = ref(null);
+    const pokemonName = toRef(props, 'pokemonName');
 
     async function getPokemon(pokemonUrl){
         let res = await fetch(pokemonUrl);
@@ -11,7 +12,12 @@
         throw new Error(`invalid Pokemon ${pokemonUrl}`);
     }
 
-    pokemon.value = await getPokemon(nameToUrl(props.pokemonName));
+    watch(pokemonName, async ()=>{
+        pokemon.value = await getPokemon(nameToUrl(pokemonName.value));
+        species.value = await fetch(pokemon.value.species.url).then((res)=>res.json());
+    });
+
+    pokemon.value = await getPokemon(nameToUrl(pokemonName.value));
     species.value = await fetch(pokemon.value.species.url).then((res)=>res.json());
     let defaultImage = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png';
 </script>
