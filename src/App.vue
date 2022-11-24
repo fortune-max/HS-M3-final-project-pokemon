@@ -1,26 +1,39 @@
 <script setup>
-  import { ref } from 'vue';
-  import LoadingPokemon from './components/LoadingPokemon.vue';
-  import PokemonCard from './components/PokemonCard.vue';
-  
-  const textbox = ref("eevee");
-  const pokemonName = ref(textbox.value);
-  const triggerSuspense = ref(0);
-
-  function searchPokemon(){
-    triggerSuspense.value++;
-    pokemonName.value = textbox.value;
-  }
-
+    import Header from './components/Header.vue';
+    import Footer from './components/Footer.vue';
 </script>
 
 <template>
-  <input placeholder="Enter Pokémon name" v-model="textbox" @change="searchPokemon"/>
-  <button @click="searchPokemon">Search</button>
-  <Suspense :key="triggerSuspense">
-    <PokemonCard :pokemon-name="pokemonName" />
-    <template #fallback>
-      <LoadingPokemon height="600px"/>
-    </template>
-  </Suspense>
+    <div class="page-wrapper">
+        <header>
+            <Header/>
+        </header>
+
+        <main>
+            <Suspense>
+                <router-view/>
+            </Suspense>
+        </main>
+
+        <footer>
+            <Footer/>
+        </footer>
+    </div>
 </template>
+
+<style scoped>
+    .page-wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    main {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: blueviolet;
+        height: inherit;
+        flex-grow: 1;
+    }
+
+</style>
