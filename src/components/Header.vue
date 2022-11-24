@@ -6,7 +6,7 @@
             <router-link to="/group/pokemon-color">Color</router-link>
             <router-link to="/group/pokemon-habitat">Habitat</router-link>
             <router-link to="/group/pokemon-shape">Shape</router-link>
-            <router-link to="/legacy-lookup">Legacy Lookup</router-link>
+            <router-link to="/card">Pokémon Lookup</router-link>
         </nav>
     </div>
 </template>
