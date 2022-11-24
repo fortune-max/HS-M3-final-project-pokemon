@@ -19,7 +19,7 @@
 <template>
     <div class="card-container" :class="species.color.name">
         <img :src="pokemon.sprites.front_default || defaultImage">
-        <div class="pokemon-name">{{pokemon?.name}}</div>
+        <div class="pokemon-name">{{pokemon.name}}</div>
     </div>
 </template>
 
