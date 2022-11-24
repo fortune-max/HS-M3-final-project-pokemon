@@ -6,7 +6,7 @@ const NotFound = () => import('@/views/NotFound.vue');
 const GroupLister = () => import('@/views/GroupLister.vue');
 const PokemonMiniCardList = () => import('@/views/PokemonMiniCardList.vue');
 const PokemonMiniCard = () => import('@/components/PokemonMiniCard.vue');
-const PokemonCard = () => import('@/views/PokemonCard.vue');
+const PokemonCard = () => import('@/components/PokemonCard.vue');
 const PokemonCardList = () => import('@/views/PokemonCardList.vue');
 const PokemonCardSingle = () => import('@/views/PokemonCardSingle.vue');
 
