@@ -7,6 +7,7 @@ const GroupLister = () => import('@/views/GroupLister.vue');
 const PokemonMiniCardList = () => import('@/views/PokemonMiniCardList.vue');
 const PokemonMiniCard = () => import('@/components/PokemonMiniCard.vue');
 const PokemonCard = () => import('@/views/PokemonCard.vue');
+const PokemonCardList = () => import('@/views/PokemonCardList.vue');
 const PokemonCardSingle = () => import('@/views/PokemonCardSingle.vue');
 
 const routes = [
@@ -20,14 +21,17 @@ const routes = [
     name: 'pokemon-grouping',
     component: GroupLister,
     props: true,
-    children: [
-      
-    ],
   },
   {
     path: '/group/:mainCategory/:subCategory',
     name: 'pokemon-mini-card-list',
     component: PokemonMiniCardList,
+    props: true
+  },
+  {
+    path: '/group-detailed/:mainCategory/:subCategory',
+    name: 'pokemon-card-list',
+    component: PokemonCardList,
     props: true
   },
   {
