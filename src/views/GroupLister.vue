@@ -9,7 +9,7 @@
         const res = await fetch(`https://pokeapi.co/api/v2/${category}`);
         if (res.ok)
             return (await res.json()).results;
-        return [];
+        throw new Error("Invalid grouping category");
     }
 
     watch(mainCategory, async () => {
