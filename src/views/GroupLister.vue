@@ -1,5 +1,6 @@
 <script setup>
     import { ref, toRef, watch } from 'vue';
+    import ListItem from '../components/ListItem.vue';
     const props = defineProps(["mainCategory"]);
     const mainCategory = toRef(props, "mainCategory");
     const list = ref([]);
@@ -24,7 +25,7 @@
     <Suspense :key="triggerSuspense">
         <div class="links-container">
             <div v-for="item in list">
-                <a :href="item.url">{{item.name}}</a>
+                <ListItem :url="item.url" :name="item.name" />
             </div>
         </div>
         <template #fallback>
@@ -35,11 +36,16 @@
 
 <style scoped>
 .links-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
     gap: 20px;
+    padding: 20px;
     margin: 20px;
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: bisque;
+    color: bisque;
+    height: 420px;
 }
 </style>
