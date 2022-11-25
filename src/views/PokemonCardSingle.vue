@@ -4,8 +4,10 @@
     import LoadingCard from '../components/LoadingCard.vue';
     const textbox = ref("eevee");
     const pokemonName = ref(textbox.value);
+    const triggerSuspense = ref(0);
 
     function searchPokemon(){
+        triggerSuspense.value++;
         pokemonName.value = textbox.value;
         router.push({
             name: 'pokemon-card',
@@ -23,7 +25,7 @@
             <button @click="searchPokemon">Search</button>
         </div>
         <router-view v-slot="{ Component }">
-            <Suspense timeout="0">
+            <Suspense timeout="0" :key="triggerSuspense">
                 <component :is="Component" />
                 <template #fallback>
                     <LoadingCard width="250px" height="400px"/>
