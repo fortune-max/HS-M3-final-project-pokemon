@@ -4,7 +4,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 const HomePage = () => import('@/views/HomePage.vue');
 const NotFound = () => import('@/views/NotFound.vue');
 const GroupLister = () => import('@/views/GroupLister.vue');
-const PokemonMiniCardList = () => import('@/views/PokemonMiniCardList.vue');
 const PokemonCard = () => import('@/components/PokemonCard.vue');
 const PokemonCardList = () => import('@/views/PokemonCardList.vue');
 const PokemonCardSingle = () => import('@/views/PokemonCardSingle.vue');
@@ -23,12 +22,6 @@ const routes = [
   },
   {
     path: '/group/:mainCategory/:subCategory',
-    name: 'pokemon-mini-card-list',
-    component: PokemonMiniCardList,
-    props: true
-  },
-  {
-    path: '/group-detailed/:mainCategory/:subCategory',
     name: 'pokemon-card-list',
     component: PokemonCardList,
     props: true

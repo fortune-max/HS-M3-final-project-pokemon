@@ -2,13 +2,13 @@
     import router from '@/router';
     const props = defineProps(["mainCategory", "subCategory", "url"]);
 
-    async function gotoMiniCardsList(){
+    async function gotoCardList(){
         const res = await fetch(props.url);
         if (!res.ok) throw new Error("Invalid subcategory");
         if (props.mainCategory === "type"){
             let pokemonList = (await res.json()).pokemon.map(x=>x.pokemon.name).sort();
             router.push({
-                name: 'pokemon-mini-card-list',
+                name: 'pokemon-card-list',
                 params: {
                     mainCategory: props.mainCategory,
                     subCategory: props.subCategory,
@@ -21,7 +21,7 @@
         else{
             let speciesList = (await res.json()).pokemon_species.map(x=>x.name).sort();
             router.push({
-                name: 'pokemon-mini-card-list',
+                name: 'pokemon-card-list',
                 params: {
                     mainCategory: props.mainCategory,
                     subCategory: props.subCategory,
@@ -36,7 +36,7 @@
 </script>
 
 <template>
-    <div @click="gotoMiniCardsList">
+    <div @click="gotoCardList">
         {{subCategory}}
     </div>
 </template>

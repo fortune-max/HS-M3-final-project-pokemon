@@ -77,7 +77,7 @@
         padding: 10px;
     }
 
-    img {
+    .card-text-wrapper img {
         width: 135px;
         height: 169px;
     }
