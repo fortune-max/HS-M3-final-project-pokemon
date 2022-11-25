@@ -4,6 +4,7 @@
     const emit = defineEmits(["updatePokemonName"]);
     const nameToUrl = (pokemonName) => `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
     const pokemonName = toRef(props, 'pokemonName');
+    const pokemon = ref(null), species = ref(null);
 
     async function getPokemon(pokemonUrl){
         let res = await fetch(pokemonUrl);
@@ -18,8 +19,8 @@
     });
 
     if (!props.miniCard) emit("updatePokemonName", pokemonName.value);
-    const pokemon = ref(await getPokemon(nameToUrl(pokemonName.value)));
-    const species = ref(await fetch(pokemon.value.species.url).then((res)=>res.json()));
+    pokemon.value = await getPokemon(nameToUrl(pokemonName.value));
+    species.value = await fetch(pokemon.value.species.url).then((res)=>res.json());
     let defaultImageMini = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png';
     let defaultImage = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png';
 </script>
