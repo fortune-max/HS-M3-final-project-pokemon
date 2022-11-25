@@ -1,6 +1,7 @@
 <script setup>
     import { ref, toRef, watch } from 'vue';
     const props = defineProps(['pokemonName', 'hideDescription']);
+    const emit = defineEmits(["updatePokemonName"]);
     const nameToUrl = (pokemonName) => `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
     const pokemon = ref(null);
     const species = ref(null);
@@ -13,10 +14,12 @@
     }
 
     watch(pokemonName, async ()=>{
+        emit("updatePokemonName", pokemonName.value);
         pokemon.value = await getPokemon(nameToUrl(pokemonName.value));
         species.value = await fetch(pokemon.value.species.url).then((res)=>res.json());
     });
 
+    emit("updatePokemonName", pokemonName.value);
     pokemon.value = await getPokemon(nameToUrl(pokemonName.value));
     species.value = await fetch(pokemon.value.species.url).then((res)=>res.json());
     let defaultImage = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png';
