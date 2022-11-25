@@ -36,5 +36,6 @@
     h2 {
         text-transform: capitalize;
         text-align: center;
+        color: white;
     }
 </style>
