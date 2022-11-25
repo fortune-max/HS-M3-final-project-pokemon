@@ -81,5 +81,9 @@
         text-transform: capitalize;
         font-size: large;
     }
+
+    .flavor-text, .form-description {
+        color: white;
+    }
     
 </style>
