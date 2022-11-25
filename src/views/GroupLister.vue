@@ -21,9 +21,9 @@
 
 <template>
     <div class="links-container">
-        <div v-for="item in list">
+        <template v-for="item in list">
             <ListItem :main-category="mainCategory" :url="item.url" :sub-category="item.name" />
-        </div>
+        </template>
     </div>
 </template>
 
