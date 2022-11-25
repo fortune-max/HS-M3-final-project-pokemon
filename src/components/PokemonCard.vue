@@ -1,10 +1,8 @@
 <script setup>
     import { ref, toRef, watch } from 'vue';
-    const props = defineProps(['pokemonName', 'hideDescription']);
+    const props = defineProps(['pokemonName', 'hideDescription', 'miniCard']);
     const emit = defineEmits(["updatePokemonName"]);
     const nameToUrl = (pokemonName) => `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
-    const pokemon = ref(null);
-    const species = ref(null);
     const pokemonName = toRef(props, 'pokemonName');
 
     async function getPokemon(pokemonUrl){
@@ -14,18 +12,23 @@
     }
 
     watch(pokemonName, async ()=>{
-        emit("updatePokemonName", pokemonName.value);
+        if (!props.miniCard) emit("updatePokemonName", pokemonName.value);
         pokemon.value = await getPokemon(nameToUrl(pokemonName.value));
         species.value = await fetch(pokemon.value.species.url).then((res)=>res.json());
     });
 
-    emit("updatePokemonName", pokemonName.value);
-    pokemon.value = await getPokemon(nameToUrl(pokemonName.value));
-    species.value = await fetch(pokemon.value.species.url).then((res)=>res.json());
+    if (!props.miniCard) emit("updatePokemonName", pokemonName.value);
+    const pokemon = ref(await getPokemon(nameToUrl(pokemonName.value)));
+    const species = ref(await fetch(pokemon.value.species.url).then((res)=>res.json()));
+    let defaultImageMini = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png';
     let defaultImage = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png';
 </script>
 <template>
-    <div class="card-text-wrapper">
+    <div class="card-container mini" :class="species.color.name" v-if="miniCard">
+        <img :src="pokemon.sprites.front_default || defaultImageMini">
+        <div class="pokemon-name">{{pokemon.name}}</div>
+    </div>
+    <div class="card-text-wrapper" v-else>
         <div class="card-container" :class="species.color.name">
             <div class="pokemon-name">{{pokemon.name}}</div>
             <img :src="pokemon.sprites.other['official-artwork'].front_default || defaultImage">
@@ -89,4 +92,15 @@
         color: white;
     }
     
+    .mini {
+        width: 110px;
+        padding: 0px;
+        height: fit-content;
+    }
+
+    .mini img {
+        width: 96px;
+        height: 96px;
+    }
+
 </style>
