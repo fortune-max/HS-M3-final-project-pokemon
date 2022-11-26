@@ -16,6 +16,16 @@
 <template>
     <div class="card-list-wrapper">
         <h2>{{subCategory}} Pokemon</h2>
+        <div class="card-choice">
+            <span>
+                <input type="radio" id="option-mini" v-model="miniCard" :value="true" />
+                <label for="option-mini">Mini Cards</label>
+            </span>
+            <span>
+                <input type="radio" id="option-maxi" v-model="miniCard" :value="false" />
+                <label for="option-maxi">Maxi Cards</label>
+            </span>
+        </div>
         <div class="card-list-container">
             <template v-for="pokemonName in pokemonNames">
                 <Suspense>
@@ -45,6 +55,19 @@
     .card-list-wrapper h2 {
         text-transform: capitalize;
         text-align: center;
+        color: white;
+    }
+
+    .card-list-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .card-choice {
+        display: flex;
+        gap: 10px;
         color: white;
     }
 
