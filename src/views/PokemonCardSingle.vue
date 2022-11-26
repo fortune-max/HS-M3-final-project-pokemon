@@ -35,7 +35,7 @@
             <Suspense timeout="0" :key="triggerSuspense">
                 <component :is="Component" />
                 <template #fallback>
-                    <LoadingCard width="250px" height="400px"/>
+                    <LoadingCard :miniCard="false"/>
                 </template>
             </Suspense>
         </router-view>

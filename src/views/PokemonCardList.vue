@@ -5,13 +5,6 @@
     const props = defineProps(["mainCategory", "subCategory"]);
     const pokemonNames = ref(window.history.state.pokemonNames);
     const miniCard = ref(true), failSilently = ref(true);
-
-    const loadingCardWidth = computed(()=>{
-        return miniCard.value ? "110px" : "250px";
-    });
-    const loadingCardHeight = computed(()=>{
-        return miniCard.value ? "120.5px" : "400px";
-    });
 </script>
 
 <template>
@@ -32,7 +25,7 @@
                 <Suspense>
                     <PokemonCard :pokemonName="pokemonName" :hideDescription="true" :miniCard="miniCard" :failSilently="failSilently"/>
                     <template #fallback>
-                        <LoadingCard :width="loadingCardWidth" :height="loadingCardHeight"/>
+                        <LoadingCard :miniCard="miniCard"/>
                     </template>
                 </Suspense>
             </template>
