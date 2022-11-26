@@ -4,7 +4,8 @@
     import LoadingCard from '../components/LoadingCard.vue';
     const props = defineProps(["mainCategory", "subCategory"]);
     const pokemonNames = ref(window.history.state.pokemonNames);
-    const miniCard = ref(true);
+    const miniCard = ref(true), failSilently = ref(true);
+
     const loadingCardWidth = computed(()=>{
         return miniCard.value ? "110px" : "250px";
     });
@@ -29,7 +30,7 @@
         <div class="card-list-container">
             <template v-for="pokemonName in pokemonNames">
                 <Suspense>
-                    <PokemonCard :pokemonName="pokemonName" :hideDescription="true" :miniCard="miniCard"/>
+                    <PokemonCard :pokemonName="pokemonName" :hideDescription="true" :miniCard="miniCard" :failSilently="failSilently"/>
                     <template #fallback>
                         <LoadingCard :width="loadingCardWidth" :height="loadingCardHeight"/>
                     </template>
