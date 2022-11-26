@@ -38,6 +38,7 @@ import { ref } from 'vue';
         background-size: 200% 200%;
         animation: gradient 2s ease-in-out infinite;
         z-index: 10;
+        background-color: aqua;
     }
 
     @keyframes gradient {
