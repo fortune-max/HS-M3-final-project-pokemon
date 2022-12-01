@@ -9,7 +9,7 @@ import { ref, toRef } from 'vue';
     else
         cardClasses.value.push("maxi-card");
 
-    if (error)
+    if (error.value)
         cardClasses.value.push("error");
     else
         cardClasses.value.push("fast-gradient");
