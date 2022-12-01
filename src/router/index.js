@@ -30,10 +30,9 @@ const routes = [
     path: '/card/',
     name: 'pokemon-card-single',
     component: PokemonCardSingle,
-    props: true,
     children: [
       {
-        path: '/card/:pokemonName',
+        path: ':pokemonName',
         name: 'pokemon-card',
         component: PokemonCard,
         props: true,
