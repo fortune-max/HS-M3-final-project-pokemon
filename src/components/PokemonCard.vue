@@ -10,7 +10,7 @@
     async function getPokemon(pokemonUrl){
         let res = await fetch(pokemonUrl);
         if (res.ok) return await res.json();
-        if (!props.failSilently) throw new Error(`invalid Pokemon ${pokemonUrl}`);
+        if (!props.failSilently) throw new Error(`Invalid Pokemon ${pokemonName.value}`);
         renderCard.value = false;
     }
 
