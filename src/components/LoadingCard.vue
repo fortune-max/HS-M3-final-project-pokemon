@@ -1,23 +1,24 @@
 <script setup>
-import { ref } from 'vue';
-    const props = defineProps(["miniCard", "error", "cardText"]);
+import { ref, toRef } from 'vue';
+    const props = defineProps(["miniCard", "error"]);
     const cardClasses = ref(["base-styles"]);
+    const error = toRef(props, 'error');
 
     if (props.miniCard)
         cardClasses.value.push("mini-card");
     else
         cardClasses.value.push("maxi-card");
 
-    if (props.error)
+    if (error)
         cardClasses.value.push("error");
     else
         cardClasses.value.push("fast-gradient");
 </script>
 
 <template>
-    <div :class="cardClasses" :style="{height, width}">
+    <div :class="cardClasses">
         <template v-if="error">
-            {{cardText}}
+            Pokémon Not Found
         </template>
     </div>
 </template>
