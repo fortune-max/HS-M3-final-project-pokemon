@@ -7,6 +7,8 @@ const GroupLister = () => import('@/views/GroupLister.vue');
 const PokemonCard = () => import('@/components/PokemonCard.vue');
 const PokemonCardList = () => import('@/views/PokemonCardList.vue');
 const PokemonCardSingle = () => import('@/views/PokemonCardSingle.vue');
+const PokemonCardWrapper = () => import('@/components/PokemonCardWrapper.vue');
+
 
 const routes = [
   {
@@ -33,8 +35,8 @@ const routes = [
     children: [
       {
         path: ':pokemonName',
-        name: 'pokemon-card',
-        component: PokemonCard,
+        name: 'pokemon-card-wrapper',
+        component: PokemonCardWrapper,
         props: true,
       }
     ]

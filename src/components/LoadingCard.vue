@@ -1,5 +1,5 @@
 <script setup>
-import { ref, toRef } from 'vue';
+import { ref, toRef, watch } from 'vue';
     const props = defineProps(["miniCard", "error"]);
     const cardClasses = ref(["base-styles"]);
     const error = toRef(props, 'error');
@@ -13,6 +13,14 @@ import { ref, toRef } from 'vue';
         cardClasses.value.push("error");
     else
         cardClasses.value.push("fast-gradient");
+
+    watch(error, ()=>{
+        cardClasses.value.pop();
+        if (error.value)
+            cardClasses.value.push("error");
+        else
+            cardClasses.value.push("fast-gradient");
+    });
 </script>
 
 <template>

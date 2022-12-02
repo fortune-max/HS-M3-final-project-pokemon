@@ -1,6 +1,5 @@
 <script setup>
     import { ref, toRef, watch } from 'vue';
-    import LoadingCard from '@/components/LoadingCard.vue';
     const props = defineProps(['pokemonName', 'hideDescription', 'miniCard', 'failSilently']);
     const emit = defineEmits(["updatePokemonName"]);
     const nameToUrl = (pokemonName) => `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
@@ -60,9 +59,6 @@
             <div v-if="!hideDescription" class="flavor-text">{{species.flavor_text_entries[0]?.flavor_text}}</div>
             <div v-if="!hideDescription" class="form-description">{{species.form_descriptions[0]?.description}}</div>
         </div>
-    </template>
-    <template v-else-if="!failSilently">
-        <LoadingCard :error="true"/>
     </template>
 </template>
 
