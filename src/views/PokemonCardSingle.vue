@@ -5,7 +5,7 @@
     const pokemonName = ref(textbox.value);
     const triggerInputRefresh = ref(0);
 
-    async function searchPokemon(){
+    function searchPokemon(){
         pokemonName.value = textbox.value;
         router.push({
             name: 'pokemon-card-wrapper',

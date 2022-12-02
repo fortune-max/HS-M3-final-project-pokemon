@@ -10,6 +10,7 @@
 
     watch(pokemonName, ()=>{
         emit('updatePokemonName', pokemonName.value);
+        invalidPokemon.value = false;
         triggerSuspense.value++;
     });
 
