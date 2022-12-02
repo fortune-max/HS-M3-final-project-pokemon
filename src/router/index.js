@@ -4,7 +4,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 const HomePage = () => import('@/views/HomePage.vue');
 const NotFound = () => import('@/views/NotFound.vue');
 const GroupLister = () => import('@/views/GroupLister.vue');
-const PokemonCard = () => import('@/components/PokemonCard.vue');
 const PokemonCardList = () => import('@/views/PokemonCardList.vue');
 const PokemonCardSingle = () => import('@/views/PokemonCardSingle.vue');
 const PokemonCardWrapper = () => import('@/components/PokemonCardWrapper.vue');
